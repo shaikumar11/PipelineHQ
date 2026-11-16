@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260" role="img" aria-label="Deal stages: Prospect, Qualified, Proposal, Won, or Lost">
+<style>text{font-family:Arial,Helvetica,sans-serif;text-anchor:middle}.b{fill:#eef4fb;stroke:#1F4E79;stroke-width:2}.w{fill:#dcfce7;stroke:#15803d;stroke-width:2}.l{fill:#fee2e2;stroke:#b91c1c;stroke-width:2}
+.h{font-size:16px;font-weight:700;fill:#1F4E79}.n{font-size:12px;fill:#44566c}.k{font-size:13px;fill:#1F4E79;text-anchor:start}.a{stroke:#1F4E79;stroke-width:2;stroke-dasharray:6 5;animation:d 1.5s linear infinite}
+@keyframes d{to{stroke-dashoffset:-22}}</style>
+<line class="a" x1="160" y1="95" x2="200" y2="95"/><line class="a" x1="340" y1="95" x2="380" y2="95"/><line class="a" x1="520" y1="95" x2="560" y2="95"/>
+<rect class="b" x="20" y="55" width="140" height="80" rx="12"/><text class="h" x="90" y="88">Prospect</text><text class="n" x="90" y="110">new deal</text>
+<rect class="b" x="200" y="55" width="140" height="80" rx="12"/><text class="h" x="270" y="88">Qualified</text><text class="n" x="270" y="110">fit confirmed</text>
+<rect class="b" x="380" y="55" width="140" height="80" rx="12"/><text class="h" x="450" y="88">Proposal</text><text class="n" x="450" y="110">offer sent</text>
+<rect class="w" x="560" y="55" width="140" height="80" rx="12"/><text class="h" x="630" y="88" style="fill:#15803d">Won</text><text class="n" x="630" y="110">revenue booked</text>
+<rect class="l" x="740" y="55" width="140" height="80" rx="12"/><text class="h" x="810" y="88" style="fill:#b91c1c">Lost</text><text class="n" x="810" y="110">from any open stage</text>
+<circle cx="20" cy="95" r="7" fill="#15803d"><animate attributeName="cx" from="20" to="700" dur="5s" repeatCount="indefinite"/></circle>
+<text class="k" x="40" y="178">Deals move one stage at a time. Skipping a stage is rejected by the API</text>
+<text class="k" x="40" y="202">Won and Lost are final, so a closed deal cannot be changed</text>
+<text class="k" x="40" y="226">Reps see their own deals. Managers see every deal and the full pipeline</text>
+</svg>
