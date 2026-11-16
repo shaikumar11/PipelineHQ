@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PipelineHQ</title><style>:root{--bg:#f4f6fa;--card:#fff;--tx:#1b2430;--mut:#667085;--line:#e4e8ef;--pri:#1F4E79;--onpri:#fff;--ok:#15803d;--okb:#dcfce7;--wa:#b45309;--wab:#fef3c7;--er:#b91c1c;--erb:#fee2e2;--in:#eef2f8}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1720;--card:#18222d;--tx:#e6edf5;--mut:#93a1b3;--line:#2a3745;--pri:#5aa2e0;--onpri:#0b1620;--ok:#4ade80;--okb:#14391f;--wa:#fbbf24;--wab:#3d2f0a;--er:#f87171;--erb:#431616;--in:#101a24}}
+*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.45 Arial,Helvetica,sans-serif}
+#login{min-height:100vh;display:grid;place-items:center;padding:16px}.lg{width:340px;text-align:center}.lg .logo{margin:0 auto 8px}.lg h1{margin:0}
+.mut,.hint,.note{color:var(--mut);font-size:12px}.hint{margin-top:10px}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:12px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{width:36px;height:36px;border-radius:9px;background:var(--pri);color:var(--onpri);display:grid;place-items:center;font-weight:700}
+header h1{font-size:18px;margin:0}header small{color:var(--mut);display:block;font-size:12px}.me{margin-left:auto;display:flex;align-items:center;gap:10px;color:var(--mut)}
+main{max-width:1150px;margin:0 auto;padding:20px 16px 40px}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}.kpi span{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.04em}.kpi b{display:block;font-size:26px;margin-top:4px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:12px;margin-bottom:16px}@media(max-width:800px){.grid{grid-template-columns:1fr}}
+h2{font-size:15px;margin:0 0 12px}label{display:block;color:var(--mut);font-size:12px;margin:10px 0 4px;text-align:left}
+input,textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--in);color:var(--tx);font:inherit}textarea{min-height:70px}
+button{padding:8px 12px;border:0;border-radius:8px;background:var(--pri);color:var(--onpri);font:inherit;font-weight:600;cursor:pointer;margin:4px 4px 0 0}button.ghost{background:transparent;color:var(--tx);border:1px solid var(--line)}
+.submit{width:100%;margin-top:14px;padding:10px}.tr{display:grid;grid-template-columns:90px 1fr 100px;gap:8px;align-items:center;margin-bottom:10px;font-size:13px}.bar{background:var(--in);border-radius:6px;height:10px}.bar i{display:block;height:10px;border-radius:6px;background:var(--pri)}
+.board{display:grid;grid-template-columns:repeat(5,minmax(190px,1fr));gap:10px;overflow-x:auto}.col{background:var(--in);border-radius:12px;padding:10px;min-height:160px}.col h3{margin:0 0 8px;font-size:13px}.col h3 small{color:var(--mut)}
+.deal{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px}.amt{font-weight:700;margin:4px 0}.empty{color:var(--mut);text-align:center;padding:14px}
+.item{padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer}.item.sel{border-color:var(--pri);background:var(--in)}
+.pill{padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600;background:var(--in);border:1px solid var(--line);text-transform:capitalize}
+.drafted,.sent,.normal{background:var(--okb);color:var(--ok)}.new{background:var(--in)}.escalated,.high{background:var(--erb);color:var(--er)}
+.step{border-left:3px solid var(--pri);padding:4px 10px;margin:8px 0}.step b{color:var(--pri)}.reply{background:var(--in);border-radius:10px;padding:10px;margin-top:8px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:var(--pri);color:var(--onpri);padding:10px 18px;border-radius:10px;opacity:0;transition:.25s;pointer-events:none}#toast.show{opacity:1;transform:translate(-50%,0)}#toast.bad{background:var(--er);color:#fff}
+</style></head><body>
+<section id="login"><form class="card lg" onsubmit="login(event)"><div class="logo">P</div><h1>PipelineHQ</h1><p class="mut">Sales pipeline for reps and managers</p><label>Username</label><input id="lu" value="meera"><label>Password</label><input id="lp" type="password" value="demo123"><button class="submit">Sign in</button><p class="hint">Demo accounts: meera (manager), asha and ravi (reps). Password: demo123</p></form></section>
+<div id="app" hidden><header><div class="logo">P</div><div><h1>PipelineHQ</h1><small>Sales pipeline for reps and managers</small></div><div class="me"><span id="who"></span><button class="ghost" onclick="logout()">Sign out</button></div></header><main><section class="kpis"><div class="card kpi"><span>Open pipeline</span><b id="k1">0</b></div><div class="card kpi"><span>Won revenue</span><b id="k2">0</b></div><div class="card kpi"><span>Win rate</span><b id="k3">0</b></div><div class="card kpi"><span>Open deals</span><b id="k4">0</b></div></section>
+<div class="grid"><form class="card" onsubmit="addDeal(event)"><h2>New deal</h2><label>Deal name</label><input id="dn" required><label>Account</label><input id="da" required><label>Amount (₹)</label><input id="dm" type="number" min="1" required><button class="submit">Add deal</button></form>
+<div class="card"><h2>Value by stage</h2><div id="chart"></div><div class="hint">Reps see their own deals. Managers see everyone's. Deals move one stage at a time.</div></div></div>
+<div class="board" id="board"></div>
+</main></div><div id="toast"></div><script>const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let TOKEN=localStorage.getItem('t'),ME=JSON.parse(localStorage.getItem('u')||'null');
+async function api(u,b){const h={'Content-Type':'application/json'};if(TOKEN)h.Authorization='Bearer '+TOKEN;
+ const r=await fetch(u,{method:b?'POST':'GET',headers:h,body:b?JSON.stringify(b):undefined});const d=await r.json();
+ if(r.status===401&&TOKEN&&u!=='/api/login')logout();if(!r.ok)throw new Error(typeof d.detail==='string'?d.detail:'Please check the input');return d}
+function toast(m,bad){const t=$('#toast');t.textContent=m;t.className='show'+(bad?' bad':'');clearTimeout(toast.h);toast.h=setTimeout(()=>t.className='',3000)}
+async function login(e){e.preventDefault();try{const d=await api('/api/login',{username:$('#lu').value.trim(),password:$('#lp').value});
+ TOKEN=d.token;ME=d.user;localStorage.setItem('t',TOKEN);localStorage.setItem('u',JSON.stringify(ME));boot()}catch(x){toast(x.message,1)}}
+function logout(){localStorage.clear();TOKEN=null;ME=null;boot()}
+function boot(){$('#login').hidden=!!ME;$('#app').hidden=!ME;if(ME){$('#who').textContent=ME.username+' ('+ME.role+')';start()}}
+const STAGES=['Prospect','Qualified','Proposal','Won','Lost'],NEXT={Prospect:'Qualified',Qualified:'Proposal',Proposal:'Won'};
+const money=n=>'₹'+Number(n).toLocaleString('en-IN');
+const card=x=>`<div class="deal"><b>${esc(x.name)}</b><div class="note">${esc(x.account)} · ${esc(x.owner)}</div><div class="amt">${money(x.amount)}</div>${NEXT[x.stage]?`<button onclick="mv(${x.id},'${NEXT[x.stage]}')">To ${NEXT[x.stage]}</button><button class="ghost" onclick="mv(${x.id},'Lost')">Lost</button>`:''}</div>`;
+async function start(){const[d,s]=await Promise.all([api('/api/deals'),api('/api/stats')]);
+ $('#k1').textContent=money(s.pipeline_value);$('#k2').textContent=money(s.won_value);$('#k3').textContent=s.win_rate+'%';$('#k4').textContent=d.filter(x=>NEXT[x.stage]).length;
+ const mx=Math.max(1,...STAGES.map(k=>s.by_stage[k].value));
+ $('#chart').innerHTML=STAGES.map(k=>`<div class="tr"><span>${k}</span><div class="bar"><i style="width:${Math.max(3,s.by_stage[k].value/mx*100)}%"></i></div><b>${money(s.by_stage[k].value)}</b></div>`).join('');
+ $('#board').innerHTML=STAGES.map(k=>`<div class="col"><h3>${k} <small>${s.by_stage[k].count}</small></h3>${d.filter(x=>x.stage===k).map(card).join('')||'<div class="empty">No deals</div>'}</div>`).join('')}
+async function mv(id,stage){try{await api('/api/deals/'+id+'/stage',{stage});toast('Moved to '+stage)}catch(x){toast(x.message,1)}start()}
+async function addDeal(e){e.preventDefault();try{await api('/api/deals',{name:$('#dn').value.trim(),account:$('#da').value.trim(),amount:+$('#dm').value});e.target.reset();toast('Deal added')}catch(x){toast(x.message,1)}start()}
+
+boot()</script></body></html>
